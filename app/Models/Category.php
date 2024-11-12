@@ -15,4 +15,12 @@ class Category extends Model
     {
         $this->hasMany(Company::class);
     }
+
+    protected function casts(): array
+    {
+        return [
+            'name'   => 'string',
+            'status' => 'boolean'
+        ];
+    }
 }

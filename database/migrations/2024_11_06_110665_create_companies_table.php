@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('cnpj')->unique();
             $table->boolean('status')->default(true);
+            $table->string('domain');
 
             $table->timestamps();
         });

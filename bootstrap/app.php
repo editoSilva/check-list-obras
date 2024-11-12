@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\Tenant\Identify;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 
@@ -13,7 +14,7 @@ return Application::configure(basePath: dirname(__DIR__))
         apiPrefix: 'v1',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        //
+        // $middleware->append(Identify::class);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

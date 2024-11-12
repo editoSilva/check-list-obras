@@ -14,6 +14,7 @@ class Company extends Model
         'name',
         'cnpj',
         'status',
+        'domain',
     ];
 
     public function category()
