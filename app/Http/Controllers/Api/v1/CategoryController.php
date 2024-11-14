@@ -6,6 +6,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequest;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -22,7 +23,7 @@ class CategoryController extends Controller
     {
         $categories =  $this->category->paginate(10);
 
-        return $categories;
+        return CategoryResource::collection($categories);
     }
 
     /**
@@ -33,8 +34,7 @@ class CategoryController extends Controller
 
         $category = $this->category->create($request->all());
 
-        return $category;
-
+        return (new CategoryResource($category));
 
     }
 
@@ -53,11 +53,9 @@ class CategoryController extends Controller
 
         $category = $this->category->find($id);
 
-        return $category;
+        return (new CategoryResource($category));
 
     }
-
-
     /**
      * Update the specified resource in storage.
      */
