@@ -9,6 +9,7 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
     public function up(): void
     {
         Schema::create('categories', function (Blueprint $table) {
@@ -16,7 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('status')->default(true);
             $table->timestamps();
+            $table->softDeletes();
         });
+
+
     }
 
     /**

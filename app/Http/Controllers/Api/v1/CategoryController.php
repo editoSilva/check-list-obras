@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -19,21 +20,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return $this->category->paginate(10);
-    }
+        $categories =  $this->category->paginate(10);
 
+        return $categories;
+    }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
-        $category = $this->category->create([
-                'name' => $request->name,
-                'status' => $request->status
-        ]);
+
+        $category = $this->category->create($request->all());
 
         return $category;
+
+
     }
 
     /**
@@ -82,7 +84,6 @@ class CategoryController extends Controller
         return response()->json([
             'message' => 'Categoria atualizada com sucesso!'
         ], 401);
-
 
     }
 
